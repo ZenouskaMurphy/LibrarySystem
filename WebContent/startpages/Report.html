@@ -1,0 +1,133 @@
+<html>
+	<body>
+		<h2> Login Details</h2>
+		<p> To log in as a member, the following options are available: </p>
+		 	<pre> 
+		 		  Username = generic1   Password = thispass
+		 		  Username = basic2     Password = mypass
+		 		  Username = common3    Password = yourpass
+		 		  Username = typical4   Password = theirpass
+		 		  Username = simple5    Password = herpass
+		 		  Username = general6   Password = hispass
+		 	</pre>
+		<p> To log in as staff ,  the following options are available: </p>
+			<pre>  
+				  StaffID = 87654321    Password = thispass
+				  StaffID = 11111111    Password = mypass
+				  StaffID = 10101010    Password = yourpass
+				  StaffID = 12345678	Password = theirpass
+				  StaffID = 15373511	Password = herpass
+				  StaffID = 24681012	Password = hispass  
+			</pre>
+
+		<h2> SQL To Create Databases </h2>
+		<h3> Member Database Table</h3>
+		<pre> 
+				 CREATE TABLE ILMemberDatabase
+				 (FirstName varchar(255) NOT NULL,
+				 Surname varchar(255) NOT NULL,
+				 Username varchar(30) NOT NULL,
+				 Password varchar(30) NOT NULL,
+				 Primary key (Username))
+		</pre>
+		<h3> Staff Database Table </h3>
+		<pre> 
+				 CREATE TABLE ILStaffDatabase
+				 (FirstName varchar(255) NOT NULL,
+				 Surname varchar(255) NOT NULL,
+			 	 StaffID integer NOT NULL,
+			 	 Password varchar(30) NOT NULL,
+			 	 Primary key (StaffID))
+		</pre>
+		<h3> Book Keeping Table (Holds Records for Members) </h3>
+		<pre>
+				CREATE TABLE ILBookKeeping
+				(MemberName varchar(255) NOT NULL,
+				PastCurrentReservations varchar(1000) NOT NULL,
+				BorrowDate varchar(255) NOT NULL,
+				ExpiryDate varchar(255) NOT NULL,
+				Constraint C1 Foreign key (MemberName)
+				ILMemberDatabase (Username))
+		</pre>
+		
+		<h3> Table for Library Catalogue </h3>
+		<pre>
+				CREATE TABLE ILCatalogue
+				(Author varchar(255) NOT NULL,
+				Title varchar(255) NOT NULL,
+				PublishYear integer(4) NOT NULL,
+				BookID integer(30) NOT NULL,
+				Primary key (BookID))
+		</pre>
+		 
+
+		<h3> Member Functionality</h3>
+		<pre>
+1) There is an option to sign in as six different members. Each member has a unique account once they are logged in.
+   A welcome message is presented to the member on their account. This welcome message retrieves the first name
+   and surname associated with the username in the ILMemberDatabase and presents the information to the member. 
+   The current time is also included in this welcome message. 
+   
+2) Once the member is logged into their account, they can see Books that they have either previously taken out or currently
+   are taking out. The borrow date and expiry date of these books is also displayed. The username is obtained from the MemberLoginServlet 
+   and forwarded to the MemberAccountServlet. The MemberAccountInfo java bean is created to create objects which can be used to get and set
+   information from the ILBookKeeping database. An empty ArrayList of objects is created in the MemberAccountServlet. An object is created 
+   for each row in the ILBookKeeping database. Each object has the following setAttributes associated with that username - 
+   PASTCURRENTRESERVATIONS, BORROWDATE,EXPIRYDATE. The object ArrayList is then forwarded to the Member Account Page (MemberAccount.jsp), where 
+   a foreach tag is used to iterate through the Object Arraylist and display the three set attributes in their respective columns in the table
+   on the MemberAccount.jsp page as soon as the member has logged in. JSTL is used for this element. 
+	</pre>
+
+		<h3> Staff Member Functionality</h3>
+	<pre>
+1) When a staff member is assigning a book to a member in the library (StaffAssignBooks.jsp), the borrow date is automatically
+   set as the current date in the Servlet. This date is presented in the following format (dd/mm/yyyy) for the database record 
+   (cannot be changed by staff member) and validation is done on the expiry date in the form. The expiry date must be in the form (dd/mm/yyyy).
+   Regular expressions within the 'pattern' of the text input of the expiry date enable the validation. The regular expression covers
+   leap years and the correct number of days in each month (For example - the 31st February 2020 cannot be chosen). 
+   The regular expressions within the pattern also ensure that only the (/) symbol is accepted in between the date, month and year.
+   (dd-mm-yyyy) or (dd.mm.yyyy) are not accepted.
+   
+2) When a staff member is changing the expiry dates of a book on a member's account (StaffChangeExpiryDates.jsp), the staff 
+   member must enter a USERNAME, PASTCURRENTRESERVATIONS, BORROWDATE and EXPIRYDATE which matches a single row in the database. 
+   If any of these fields are incorrect within that row, an error message will appear saying that the record is not found. 
+   </pre>
+   
+   		<h3> Catalogue Functionality </h3>
+   	<pre>
+   The catalogue page is available to anyone who accesses the website (Catalogue.jsp). The user searches by Author or Title. 
+   The user can search partial words, such as elec, control and any row in the database which contains these words is displayed
+   to the user. This functionality is implemented in a similar way to the Member Account Page. An arraylist of objects is 
+   created here also. The for each tag in the Catalogue.jsp page is used to iterate through the Object ArrayList and display
+   the four set attributes of the Object (AUTHOR, TITLE, PUBLISHYEAR, BOOKID). JSTL is also used for this element. If the search
+   term is not contained within any of the author or title columns of the database, the user is prompted with a message saying that
+   this record was not found. 
+    </pre>
+    
+    	<h3> Bonus Features </h3>
+	<pre> 
+1) User validation occurs at login for both the staff members and library members (StaffLogin.jsp and MemberLogin.jsp).
+   If login details do not match database records, login is not possible.		
+   
+2) When the library member or staff member logs out, their session is invalidated in the LogoutServlet and they are sent back to the
+   start page ()LibraryStartPage.jsp). This should remove all the data in the session if the user was to try and get back in. By default
+   the cache stores all of the responses and thus the back button displays the page from the browser cache instead of requesting
+   a brand new page from the Server,but the idea behind invalidating sessions on logout is correct.
+
+3) All fields within all forms have to be filled/Selected in order to progress to the next page (MemberLogin.jsp, StaffLogin.jsp, 
+   StaffAccount.jsp, StaffAssignBooks.jsp, StaffChangeExpiryDates.jsp, NewMember.jsp). This is implemented using the required attribute.
+   
+4) Session Tracking is enabled within this application. HTTP session is used for this. This is enabled in the MemberLoginServlet
+   and StaffLoginServlet. New sessions are created here and the maximum inactive interval of 10 minutes is set. The staff member and
+   library member are logged out after ten minutes if they are inactive. The Member Login session is carried to the next member 
+   servlet (MemberAccountServlet). The Staff Login Session is carried to the next set of staff servlets 
+   (StaffAccountServlet, StaffAssignBooksServlet, StaffChangeExpiryDatesServlet).
+   
+5) There is a registration feature available on LibraryStartPage which allows users to join Imaginary Library (NewMember.jsp). 
+   At registration, a unique username is required to register. If the user tries to choose a username already taken by another
+   member, they are prompted that this username is taken and that they need to pick another username. 
+   A password strength checker is implemented within this registration form. This password strength checker is implemented using
+   JQuery. This feature implements AJAX as in page replacement is used to illustrate the strength of the users' password while they type.
+	
+	</body>
+</html>

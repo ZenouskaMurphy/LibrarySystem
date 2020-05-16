@@ -1,0 +1,95 @@
+body{margin:0;
+	padding:0;
+}
+
+.header {
+	background-color: #4682B4;
+	width: 100%;
+	color: white;
+	font-size: 22px; 
+	text-align: center
+}
+
+ul { 
+	list-style-type: none;  
+	text-align: left;
+	font-size: 20px;
+	margin: 0;	
+}
+
+li {
+	padding: 5px 7px;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a{ 
+	text-decoration: none;
+	color: white;
+}
+
+a:hover{
+	background-color: #483D8B;
+	width: 10%;
+}
+
+.StaffIntroduction{
+	float: left;
+	width: 100%;
+}
+
+.WelcomeMessage{
+	float: left;
+	width: 40%;
+	font-size: 20px;	
+}
+
+.Options{
+	float: left;
+	width: 70%;
+	margin-left: 10%;
+}
+
+table.StaffAccountTable{
+	margin-left: 30%;
+	width: 50%;
+}
+
+table.StaffAccountTable td{
+	border: 1px solid #ddd;
+	text-align: left;
+	padding: 8px;
+	background-color: #4169E1;
+	color: white;
+}
+
+.button{ 
+	float:left;
+	font-size: 16px;
+	pointer: cursor;
+	padding: 10px 10px;
+	background-color: #B0C4DE;
+	text-decoration: none;
+	text-align: center;
+	border: 3px solid white;
+	color: white;
+	margin-left: 35%;
+	width: 30%;
+	height: 10%;
+}
+
+.SuccessMessage{
+	float: left;
+	margin-left: 40%;
+	color: red;
+}
+
+.footer{ 
+	position: fixed;
+	width:100%;
+	background-color: #4682B4;
+	color: white;
+	font-size: 15px;
+	left: 0;
+	bottom: 0;
+}

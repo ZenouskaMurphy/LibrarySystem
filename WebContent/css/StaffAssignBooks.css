@@ -1,0 +1,62 @@
+body{margin:0;
+	padding:0;
+}
+
+.header {
+	background-color: #4682B4;
+	width: 100%;
+	color: white;
+	font-size: 22px; 
+	text-align: center
+}
+
+.Table{
+	width: 100%;
+	float: left;
+}
+
+table.AssigningBooks{
+	margin-left: 25%;
+	width: 50%;
+}
+
+table.AssigningBooks td {
+	border: 1px solid #ddd;
+	text-align: left;
+	padding: 8px;
+	background-color:#4169E1;
+	color: white;
+}
+
+
+.button{ 
+	float:left;
+	font-size: 16px;
+	pointer: cursor;
+	padding: 10px 10px;
+	background-color: #B0C4DE;
+	text-decoration: none;
+	text-align: center;
+	border: 3px solid white;
+	color: white;
+	margin-left: 35%;
+	width: 30%;
+	height: 10%;
+}	
+
+.SuccessfulorUnsuccessfulAssigning {
+	float: left;
+	margin-left: 40%;
+	color: red;
+}
+
+
+.footer{ 
+	position: fixed;
+	width:100%;
+	background-color: #4682B4;
+	color: white;
+	font-size: 15px;
+	left: 0;
+	bottom: 0;
+}

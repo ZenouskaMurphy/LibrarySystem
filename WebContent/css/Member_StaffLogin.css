@@ -1,0 +1,84 @@
+body{margin:0;
+	padding:0;
+}
+
+.header {
+	background-color: #4682B4;
+	width: 100%;
+	color: white;
+	font-size: 22px; 
+	text-align: center
+}
+
+ul {  
+	list-style-type: none; 
+	text-align: left;
+	font-size: 20px;
+	margin: 0;	
+}
+
+li {
+	padding: 5px 7px;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a{ 
+	text-decoration: none;
+	color: white;
+}
+
+a:hover{
+	background-color: #483D8B;
+	width: 10%;
+}
+
+.Logo{
+	float:center;
+	margin-left: 40%;
+	margin-bottom: 2%;
+}
+
+.Login{
+	float: left;
+	margin-left: 40%;
+}
+
+h3{
+	margin: 0;
+}
+
+table.LoginTable td{
+	padding: 2%;
+}
+
+.button{ 
+	float: left;
+	font-size: 16px;
+	pointer: cursor;
+	padding: 10px 10px;
+	background-color: #B0C4DE;
+	text-decoration: none;
+	text-align: center;
+	border: 3px solid white;
+	color: white;
+	width: 40%;
+	height: 7%;
+}	
+
+.UnsuccessfulLogin p{
+	margin: 0;
+	float: left;
+	width: 100%;
+	color: red;
+}
+
+.footer{ 
+	position: fixed;
+	width: 100%;
+	background-color: #4682B4;
+	color: white;
+	font-size: 15px;
+	left: 0;
+	bottom: 0;
+}

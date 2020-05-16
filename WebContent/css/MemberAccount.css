@@ -1,0 +1,84 @@
+body{margin:0;
+	padding:0;
+}
+
+.header {
+	background-color: #4682B4;
+	width: 100%;
+	color: white;
+	font-size: 22px; 
+	text-align: center
+}
+
+ul {  
+	list-style-type: none; 
+	text-align: left;
+	font-size: 20px;
+	margin: 0;	
+}
+
+li {
+	padding: 5px 7px;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a{ 
+	text-decoration: none;
+	color: white;
+}
+
+a:hover{
+	background-color: #483D8B;
+	width: 10%;
+}
+
+
+.MemberIntroduction{
+	float: left;
+	width: 100%;
+}
+
+
+.WelcomeInformation{
+	float: left;
+	width: 40%;
+	font-size: 20px;	
+}
+
+
+table.Reservations{
+	border-collapse: collapse;
+	border-style: groove;
+	width: 100%;
+}
+
+table.Reservations td {
+	border: 1px solid #ddd;
+	text-align: left;
+	padding: 8px;
+}
+
+
+table.Reservations th {
+	border: 1px solid #ddd;
+	text-align: left;
+	color: white;
+	padding: 8px;
+	background-color: #000000
+}
+
+tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+.footer{ 
+	position: fixed;
+	width:100%;
+	background-color: #4682B4;
+	color: white;
+	font-size: 15px;
+	left: 0;
+	bottom: 0;
+}
+	
